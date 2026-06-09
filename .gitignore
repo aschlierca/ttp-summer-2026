@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 node_modules
 build
 npm-debug.log
 .env
+=======
+hidden
+>>>>>>> upstream/main
 .DS_Store
