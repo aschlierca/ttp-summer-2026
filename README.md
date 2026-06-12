@@ -30,10 +30,10 @@ June 1 – June 5
 
 | Topic                      | Assignment          | Lecture | Slides                 | Demo |
 | -------------------------- | ------------------- | ------- | ---------------------- | ---- |
-| Introduction to JavaScript | [📝][js-asst]       | -       | [PDF][js-slides]       | [JS][js-intro-demo]              |
-| JavaScript Continued       | [📝][js-asst]       | -       | [PDF][js-slides]       | [JS][js-part2-demo]              |
-| HTML & CSS                 | [📝][html-css-asst] | -       | [PDF][html-css-slides] | [HTML][html-demo] / [CSS][css-demo] |
-| Git (Solo Workflow)        | [📝][git-solo-asst] | -       | [PDF][git-slides]      | -                                |
+| Introduction to JavaScript | [📝 workshop][js-asst]       | -       | [PDF][js-slides]       | [JS][js-intro-demo]              |
+| JavaScript Continued       | [📝 workshop][js-asst]       | -       | [PDF][js-slides]       | [JS][js-part2-demo]              |
+| HTML & CSS                 | [📝 workshop][html-css-asst] | -       | [PDF][html-css-slides] | [HTML][html-demo] / [CSS][css-demo] |
+| Git (Solo Workflow)        | [📝 workshop][git-solo-asst] | -       | [PDF][git-slides]      | -                                |
 
 [html-css-asst]: https://github.com/aghaffar570/TTP-workshops/tree/main/html-css
 [js-asst]: https://github.com/aghaffar570/TTP-workshops/tree/main/js-fundamentals
@@ -52,18 +52,18 @@ June 1 – June 5
 
 June 8 – June 12
 
-| Topic                        | Assignment                                  | Lecture | Slides                                          | Demo |
-| ---------------------------- | ------------------------------------------- | ------- | ----------------------------------------------- | ---- |
-| HTML/CSS/JS Continued        | [DOM I][dom-i-asst] / [DOM II][dom-ii-asst] | -       | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | -    |
-| Git (Collaborative Workflow) | [📝][git-collab-asst]                       | -       | [PDF][git-slides]                               | -    |
+| Topic                        | Assignment                                                              | Lecture | Slides                                          | Demo |
+| ---------------------------- | ----------------------------------------------------------------------- | ------- | ----------------------------------------------- | ---- |
+| DOM Manipulation             | [📝 workshop][dom-asst]                         | -       | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | [📽️][dom-solution-part1]    |
+| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst]                                                   | -       | [PDF][git-slides]                               | [📽️][git-collaboration-demo]    |
 
 [git-collab-asst]: ./assignments/Git-Collab.md
 [ai-tools-asst]: ./assignments/AI-Tools-Setup.md
-[dom-i-asst]: ./assignments/DOM-I.md
-[dom-ii-asst]: ./assignments/DOM-II.md
-[ai-tools-slides]: ./slides/AI-Primer.pdf
+[dom-asst]: ./assignments/DOM.md
 [dom-i-slides]: ./slides/DOM-1.pdf
 [dom-ii-slides]: ./slides/DOM-2.pdf
+[dom-solution-part1]: https://www.youtube.com/watch?v=kyvhmCw94fk
+[git-collaboration-demo]: https://www.youtube.com/watch?v=v51scylhY7c
 
 ---
 
