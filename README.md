@@ -55,7 +55,7 @@ June 8 – June 12
 | Topic                        | Assignment                                                              | Lecture | Slides                                          | Demo |
 | ---------------------------- | ----------------------------------------------------------------------- | ------- | ----------------------------------------------- | ---- |
 | DOM Manipulation             | [📝 workshop][dom-asst]                         | -       | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | [📽️][dom-solution-part1]    |
-| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst]                                                   | -       | [PDF][git-slides]                               | [📽️][git-collaboration-demo]    |
+| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst]                                                   | -       | [PDF][git-slides]                               | [📽️][git-collaboration-demo] [📽️][git-fork-demo]   |
 
 [git-collab-asst]: ./assignments/Git-Collab.md
 [ai-tools-asst]: ./assignments/AI-Tools-Setup.md
@@ -64,6 +64,8 @@ June 8 – June 12
 [dom-ii-slides]: ./slides/DOM-2.pdf
 [dom-solution-part1]: https://www.youtube.com/watch?v=kyvhmCw94fk
 [git-collaboration-demo]: https://www.youtube.com/watch?v=v51scylhY7c
+[git-fork-demo]: https://youtu.be/bPoCFpM4gCg
+
 
 ---
 
@@ -75,15 +77,15 @@ Off June 19 – JUNETEENTH
 
 | Topic        | Assignment        | Lecture | Slides                      | Demo |
 | ------------ | ----------------- | ------- | --------------------------- | ---- |
-| React I      | [📝][react1-asst] | -       | [PDF][react1-slides]        | -    |
+| React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | -    |
+| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | -    |
 | API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | -    |
-| React II     | [📝][react2-asst] | -       | [PDF][react2-slides]        | -    |
+
 
 [react1-asst]: ./assignments/React.md
 [api-asst]: ./assignments/APIRequests.md
 [react2-asst]: ./assignments/React2.md
-[react1-slides]: ./slides/React-1.pdf
-[react2-slides]: ./slides/React-2-Forms.pdf
+[react-slides]: ./slides/REACT.pdf
 [fullstack-api-slides]: ./slides/APIs-Express-CRUD.pdf
 
 ---
