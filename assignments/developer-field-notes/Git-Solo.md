@@ -42,8 +42,8 @@ Important: create this project in your personal bootcamp workspace, not inside a
 
 Your static page must include:
 
-- [ ] A heading with the site name.
-- [ ] A section explaining the difference between Git and GitHub.
+- [x] A heading with the site name.
+- [x] A section explaining the difference between Git and GitHub.
 - [ ] A section showing the daily loop: edit, stage, commit, push.
 - [ ] A list of at least eight Git commands with short explanations.
 - [ ] A section for "Things I should not commit" that mentions `.env`, secrets, `node_modules`, and `.DS_Store`.
