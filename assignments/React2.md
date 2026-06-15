@@ -1,149 +1,331 @@
 # Assignment 07: React II — Event RSVP Manager
 
-## Goal
+## What You Are Building
 
-Build a React app with controlled form inputs, client-side validation, and a live-updating list — practicing the full controlled input pattern that every professional React form uses.
+A page where guests can fill out a short form to RSVP for an event. When they submit, their name and email appear in a list below. Organizers can remove guests from the list.
 
-## Objectives
+By the end of this assignment you will have practiced:
+- Connecting a text input to React state (controlled inputs)
+- Handling a form submit without a page refresh
+- Adding and removing items from a list
 
-You will practice:
+---
 
-- Building controlled inputs with `useState` + `onChange` + `value`.
-- Preventing default form submission with `e.preventDefault()`.
-- Writing inline validation logic inside `onChange` handlers.
-- Displaying validation error messages conditionally.
-- Disabling the submit button when the form is invalid.
-- Resetting the form after a successful submission.
-- Combining everything learned in React I and React II.
+## Working in Groups
 
-## Problem
+You will work together on one screen — one person types, the other reads along and helps catch mistakes. Switch who is typing at each checkpoint.
 
-Build an **Event RSVP Manager** for a fictional company event. Guests can fill out a form to RSVP, and the page displays a live guest list below the form. Organizers can also remove guests from the list.
+One person creates the GitHub repository and adds the other as a collaborator:
 
-Use Vite to scaffold:
+1. The repo owner goes to the repository on GitHub, then **Settings → Collaborators → Add people**.
+2. The collaborator accepts the invite from their email or GitHub notifications.
+
+Both people should be looking at the screen at all times. The person not typing should be reading the instructions out loud, checking the browser, and catching errors.
+
+---
+
+## Step 0 — Set Up Your Project
+
+Open your terminal. Run these four commands **one at a time**. Wait for each one to finish before running the next.
 
 ```bash
 npm create vite@latest rsvp-manager -- --template react
+```
+```bash
 cd rsvp-manager
+```
+```bash
 npm install
+```
+```bash
 npm run dev
 ```
 
-## Assignment Tasks
+Open the link in your browser (usually `http://localhost:5173`). You should see the default Vite + React page.
 
-### Part 1: Form Skeleton
+**Before you write any code, do this cleanup:**
 
-In `App.jsx`:
+Vite fills these files with a demo to show the tool is working. You are going to replace them with your own app.
 
-- [ ] Create a `<form>` with the following fields:
-  - **Name** — text input (required)
-  - **Email** — email input (required)
-  - **Dietary restriction** — `<select>` with options: `"None"`, `"Vegetarian"`, `"Vegan"`, `"Gluten-Free"`
-  - **Attending?** — checkbox input
-  - A submit button labeled `"Add Guest"`
-- [ ] Add a heading: `"Company Picnic RSVP"`.
-- [ ] The form should not do anything yet — just render.
+1. Open `src/App.jsx` — select all the text and delete it.
+2. Open `src/App.css` — select all the text and delete it if you want to reset the styles.
 
-### Part 2: Controlled Inputs
+Then paste this starter into `src/App.jsx`:
 
-- [ ] Add state for each field:
-  ```js
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [dietary, setDietary] = useState("None");
-  const [attending, setAttending] = useState(true);
-  ```
-- [ ] Wire each input to its state variable:
-  - `value={name}` + `onChange={(e) => setName(e.target.value)}` for the name input.
-  - Same pattern for email and dietary select.
-  - For the checkbox: `checked={attending}` + `onChange={(e) => setAttending(e.target.checked)}`.
-- [ ] Verify in React DevTools that state updates as you type.
+```jsx
+import { useState } from 'react'
+import './App.css'
 
-### Part 3: Validation
+export default function App() {
+  return (
+    <div>
 
-Add the following validation — check on every `onChange`, not only on submit.
+    </div>
+  )
+}
+```
 
-- [ ] **Name** — must not be empty. Error: `"Name is required."`
-- [ ] **Email** — must include `@` and `.`. Error: `"Please enter a valid email address."`
-- [ ] Add state for each error message:
-  ```js
-  const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  ```
-- [ ] Update the error state inside each field's `onChange` handler.
-- [ ] Display error messages below each input when the error string is not empty.
-- [ ] Disable the submit button when either error is non-empty **or** when name or email is empty.
+Save the file. Your browser should show a blank white page with no errors. That means your starter is working.
 
-### Part 4: Submitting and Building the Guest List
+> If your terminal shows an error, ask your instructor before moving on. Do not spend more than 10 minutes on setup.
 
-- [ ] In `App`, add a `guests` state variable (array, default `[]`).
-- [ ] Write a `handleSubmit(e)` function that:
-  - Calls `e.preventDefault()`.
-  - Creates a new guest object: `{ id: Date.now(), name, email, dietary, attending }`.
-  - Adds the guest to `guests` without mutating the existing array.
-  - Resets all form fields back to their default values.
-- [ ] Connect `handleSubmit` to the form's `onSubmit` prop.
+---
 
-### Part 5: GuestList Component
+## Part 1 — Warm Up: See a Controlled Input Work
 
-Create `src/components/GuestList.jsx`.
+**New ideas in this part:** controlled input, `onChange`, `value`
 
-- [ ] Receives `guests` and `onRemove` as props.
-- [ ] If `guests` is empty, renders `<p>No guests yet. Be the first to RSVP!</p>`.
-- [ ] Otherwise renders a list of guest cards, each showing:
-  - Name and email
-  - Dietary restriction
-  - Attending badge: `"✅ Attending"` or `"❌ Not Attending"`
-  - A `"Remove"` button that calls `onRemove(guest.id)`
-- [ ] In `App`, write a `removeGuest(id)` function that filters the guest out of `guests`.
-- [ ] Render `<GuestList guests={guests} onRemove={removeGuest} />` below the form.
+Before building the full form, you are going to practice with one input first. This is the most important pattern in React forms. Take your time here.
 
-### Part 6: Summary Stats
+---
 
-- [ ] Display a summary above the guest list:
-  - Total RSVPs.
-  - Number attending.
-  - Number not attending.
-- [ ] This can live in `App` or its own component — your choice.
+### Step 1.1 — Add state and a heading
 
-## Common Gotchas
+Your starter file is already set up. Now add to it:
+- Inside the `App` function, above the `return`, create one piece of state: a variable called `name` that starts as an empty string `''`
+- Inside the `return`, add an `<h1>` that says "RSVP Practice" and a plain `<input type="text" />`
 
-- Always call `e.preventDefault()` **first** in your submit handler — before anything else. If state updates run first, React may re-render before you prevent the default.
-- A checkbox uses `checked`, not `value`. Using `value` on a checkbox is a very common mistake.
-- Checking `e.target.value.includes("@")` is a simple email validator for this assignment. In production, use a regex or a form library.
-- If the submit button is disabled by default (because the form starts empty and `name` is `""`), that's correct behavior — the user hasn't typed anything yet.
-- Clearing a controlled form after submit means resetting all state variables. Resetting the DOM directly (`e.target.reset()`) won't work the same way because React manages the values.
-- `Date.now()` returns a number that is unique enough for a local id when creating new items client-side.
+Save the file. You should see a heading and an empty text box in the browser.
 
-## Industry Standards
+Try typing in the text box. It works — but React does not know what you are typing yet. That is what you will fix next.
 
-- Every form input in React should be controlled. Uncontrolled inputs (`ref`-based) are used only in specific edge cases.
-- Validate on `onChange` (as you type), not only on submit — it gives users faster feedback.
-- Submit buttons should be disabled while the form is invalid — it prevents repeated bad submissions.
-- Separate the form component from the list component. Forms and displays are different responsibilities.
-- When building the new array after submit, use spread: `[...guests, newGuest]`. Never push to state directly.
+---
 
-## Stretch Challenges
+### Step 1.2 — Connect the input to state
 
-If you finish early:
+Update your `<input>` so that:
+- Its displayed value always matches the `name` state variable
+- Every time you press a key, it updates the `name` state variable with what you typed
 
-- [ ] Extract the form into its own `RSVPForm` component. Pass `onAddGuest` as a prop.
-- [ ] Add a `"Dietary Summary"` section that counts guests per dietary restriction using `reduce`.
-- [ ] Add an `"Edit"` button that populates the form with a guest's existing data so they can update their RSVP.
-- [ ] Add a `"Sort by name"` button that re-orders the guest list alphabetically.
-- [ ] Persist the guest list to `localStorage` so it survives a page refresh.
-- [ ] Add a minimum character count to the name field (at least 2 characters).
+Then add a `<p>` below the input that displays the current value of `name`.
+
+Save the file. Type something in the text box. You should see the text appear below the box at the same time you type.
+
+> **What is a controlled input?** React owns the value. The input just displays it. Two things make this work:
+> - `value={name}` — tells the input what to show
+> - `onChange` — an event that fires on every keystroke. The event object `e` has `e.target.value`, which is what the user just typed.
+>
+> **Gotcha:** If you can type in the box but nothing appears below it, check that your `onChange` is calling `setName`.
+
+---
+
+### Step 1.3 — See what happens if you remove `onChange`
+
+Try deleting the `onChange` line and type in the box. Notice anything?
+
+The box does not update. You cannot type.
+
+That is because `value={name}` tells the input to always show whatever is in state — and without `onChange`, state never changes, so the input never changes.
+
+Put `onChange` back before moving on.
+
+---
+
+**Checkpoint 1:** You can type in the box and see the text appear below it in real time. ✓
+
+---
+
+## Part 2 — Build the Form
+
+**New ideas in this part:** multiple controlled inputs, form element, submit button
+
+Now you will build the real form. It will have two inputs: name and email.
+
+---
+
+### Step 2.1 — Add a second state variable for email
+
+Inside your `App` function, add a second piece of state — a variable called `email` that starts as an empty string.
+
+---
+
+### Step 2.2 — Replace the input with a full form
+
+Replace everything inside your `return` with a layout that has:
+- An `<h1>` that says "Company Picnic RSVP"
+- A `<form>` element containing:
+  - A `<label>` that says "Name" and a controlled text input connected to your `name` state
+  - A `<label>` that says "Email" and a controlled text input connected to your `email` state
+  - A `<button type="submit">` with the label "Add Guest"
+- Below the form, two `<p>` tags that display the current values of `name` and `email`
+
+Save the file. You should see a form with two inputs and a button. Type in both fields — you should see the values appear below the form as you type.
+
+> **Gotcha:** Each input needs its own `value` and `onChange`. If you connect both inputs to `name`, they will both update the same variable and mirror each other.
+
+---
+
+**Checkpoint 2:** Both inputs update as you type and the values appear below the form. ✓
+
+---
+
+## Part 3 — Handle the Form Submit
+
+**New ideas in this part:** `e.preventDefault()`, adding to an array in state, clearing the form
+
+This part has several steps. Work through them one at a time.
+
+---
+
+### Step 3.1 — Add a guests list to state
+
+Add a third piece of state inside your `App` function: a variable called `guests` that starts as an empty array `[]`.
+
+This starts empty. Every time someone submits the form, you will add a new guest to it.
+
+---
+
+### Step 3.2 — Write the submit handler
+
+Add a function called `handleSubmit` inside your `App` function, above the `return`. It should:
+1. Stop the browser from refreshing the page — this must be the very first line
+2. Create a new object for the guest with three fields: `id`, `name`, and `email`. For `id`, use `Date.now()` — this gives a unique number based on the current time.
+3. Add the new guest to the `guests` array in state — create a new array that includes all the old guests plus the new one
+4. Clear both input fields by setting `name` and `email` back to empty strings
+
+> **Why `e.preventDefault()`?** By default, submitting a form causes the browser to reload the page. This would wipe out your React state. Calling `e.preventDefault()` blocks that reload. Your submit handler receives an event object — call this method on it.
+>
+> **Why not `guests.push(newGuest)`?** In React you cannot change state directly. `push` changes the existing array. Instead, create a brand new array that includes all the old items plus the new one. The spread operator can help: `[...guests, newGuest]` creates a new array with everything in `guests` followed by `newGuest`.
+>
+> **Gotcha:** Clear the inputs after calling `setGuests`, not before. If you clear them first, the values will be gone when you try to build the new guest object.
+
+---
+
+### Step 3.3 — Connect the handler to the form
+
+Update your `<form>` so that it calls `handleSubmit` when submitted.
+
+Save the file. Fill in both fields and click "Add Guest". The form should clear. (You cannot see the guests yet — that is the next step.)
+
+---
+
+### Step 3.4 — Display the guest list
+
+Below the form, add a section that:
+- Shows an `<h2>` that says "Guest List"
+- Uses `.map()` to display each guest — show their name and email on the same line
+- Gives each item a `key` using the guest's `id`
+
+Save the file. Submit the form a few times with different names and emails. Each guest should appear in the list. The form should clear after every submission.
+
+> **Gotcha:** Make sure the `.map()` is inside your `return`. JSX that lives outside the `return` will not appear on screen.
+
+---
+
+**Checkpoint 3:** Submitting the form adds a guest to the list and clears both fields. ✓
+
+---
+
+## Part 4 — Remove a Guest
+
+**New ideas in this part:** removing an item from an array in state
+
+---
+
+### Step 4.1 — Write the removeGuest function
+
+Add a function called `removeGuest` inside your `App` function, above the `return`. It should:
+- Accept one argument: the `id` of the guest to remove
+- Use `.filter()` to create a new array that includes every guest except the one with that `id`
+- Call `setGuests` with the result
+
+> **What is `.filter()`?** It goes through every item in an array and keeps only the ones that pass a test you write. Items that fail the test are left out of the new array.
+>
+> **Hint:** Your test should keep guests whose `id` does not match the one you want to remove.
+
+---
+
+### Step 4.2 — Add a Remove button to each guest
+
+Update your guest list display to include a `<button>` next to each guest that, when clicked, calls `removeGuest` with that guest's `id`.
+
+Save the file. Add a few guests, then click Remove. Each button should remove only that guest.
+
+> **Gotcha:** Same as before — do not call the function immediately. Use an arrow function in `onClick` so it only runs when clicked: `onClick={() => removeGuest(guest.id)}`.
+
+---
+
+**Checkpoint 4:** Each guest has a Remove button that removes only that guest from the list. ✓
+
+---
+
+## Part 5 — GuestList Component
+
+**New ideas in this part:** moving display logic into a separate component
+
+Right now all your code is in one file. In this part, you will move the guest list display into its own component.
+
+---
+
+### Step 5.1 — Create the file
+
+In your `src` folder, create a new file called `GuestList.jsx`.
+
+---
+
+### Step 5.2 — Write the GuestList component
+
+Open `GuestList.jsx`. Write a component called `GuestList` that:
+- Accepts two props: the `guests` array and a function to remove a guest (name it `onRemove`)
+- If the `guests` array is empty, returns a `<p>` that says "No guests yet. Be the first to RSVP!"
+- Otherwise, displays each guest with their name, email, and a Remove button that calls `onRemove` with the guest's `id`
+- Is exported as the default export
+
+> **Hint:** A component can have more than one `return` statement. Write an `if` check at the top — if `guests.length === 0`, return the empty message. If that condition is not true, JavaScript keeps going and hits the second `return` with the full list.
+>
+> **Gotcha:** Make sure the empty-state check comes before the full list. JavaScript stops at the first `return` it reaches.
+
+---
+
+### Step 5.3 — Use GuestList in App
+
+Open `App.jsx`:
+1. Import `GuestList` at the top of the file.
+2. Replace the guest list section in your `return` with the `<GuestList />` component. Pass it the `guests` array and the `removeGuest` function as props.
+
+Save the file. Everything should work exactly the same as before. The only change is that the display logic now lives in its own file.
+
+> **Gotcha:** If the Remove button stops working, check that you are passing `removeGuest` as a prop to `GuestList` and that `GuestList` is calling that prop — not a function it defined itself.
+
+---
+
+**Checkpoint 5:** The app still works. GuestList is in its own file. ✓
+
+---
 
 ## Finished Checklist
 
-Before submitting, verify:
+Before you submit, confirm each item:
 
-- [ ] The form renders all four inputs correctly.
-- [ ] State updates as you type — verify in React DevTools.
-- [ ] Validation errors appear for invalid name and email.
-- [ ] The submit button is disabled when the form is invalid.
-- [ ] Submitting adds a new guest card to the list.
-- [ ] The form clears after a successful submission.
-- [ ] The `"Remove"` button deletes the correct guest.
-- [ ] Stats update correctly when guests are added or removed.
-- [ ] Your work has been committed and pushed to GitHub.
+- [ ] The app loads in the browser with no errors.
+- [ ] Typing in an input field updates the field as you type.
+- [ ] Submitting the form adds the guest to the list below.
+- [ ] The form clears after submitting.
+- [ ] Clicking Remove removes only that guest.
+- [ ] When there are no guests, the message "No guests yet. Be the first to RSVP!" appears.
+- [ ] `GuestList` is in its own file: `src/GuestList.jsx`.
+- [ ] Your work is committed and pushed to GitHub.
+
+---
+
+## Stretch Challenges
+
+Only start these after everything above is working.
+
+- [ ] Add a counter above the guest list that shows how many guests have RSVP'd. It should update when guests are added or removed.
+- [ ] Add basic validation: do not add a guest if the name field is empty. Show a message that says "Name is required" if the user tries to submit with an empty name.
+- [ ] Add a `<select>` dropdown to the form with options: `"None"`, `"Vegetarian"`, `"Vegan"`, `"Gluten-Free"`. Display the meal preference on each guest card.
+- [ ] Disable the "Add Guest" button if the name field is empty.
+
+---
+
+## Quick Reference
+
+| Problem | Check this |
+|---|---|
+| Typing in the input does nothing | Does your input have both `value` and `onChange`? |
+| Page refreshes when you submit | Is `e.preventDefault()` the first line in your submit handler? |
+| Guest does not appear after submit | Is `setGuests` being called with a new array (not `push`)? |
+| Form does not clear after submit | Are you calling `setName('')` and `setEmail('')` after `setGuests`? |
+| Remove button removes the wrong guest | Are you passing `guest.id` to `removeGuest`, not the whole object? |
+| Blank page | Open the browser console and read the error message. |

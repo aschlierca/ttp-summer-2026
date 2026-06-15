@@ -2,6 +2,12 @@
 
 https://developer.mozilla.org/en-US/
 
+Critical Rending Path (steps the browser takes to render) - https://web.dev/learn/performance/understanding-the-critical-path
+
+DOM construction - https://web.dev/articles/critical-rendering-path/constructing-the-object-model
+
+LCP - https://web.dev/articles/lcp
+
 ## CSS
 
 https://cssbattle.dev/
