@@ -77,9 +77,9 @@ Off June 19 – JUNETEENTH
 
 | Topic        | Assignment        | Lecture | Slides                      | Demo |
 | ------------ | ----------------- | ------- | --------------------------- | ---- |
-| React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | [📽️][react-demo-1]    |
-| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | -    |
-| API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | -    |
+| React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | [📽️ react-1][react-demo-1] [[📽️ checkpoint-review]][checkpoint-review]    |
+| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | [📽️ react-2][react-demo-2]  [📽️ movie-list-review][movie-solution]  |
+| API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | [📽️ react-rsvp-review][react-rsvp-review]   [📽️ api-&-fetch][api-&-fetch] |
 
 
 [react1-asst]: ./assignments/React.md
@@ -88,6 +88,11 @@ Off June 19 – JUNETEENTH
 [react-slides]: ./slides/REACT.pdf
 [fullstack-api-slides]: ./slides/APIs-Express-CRUD.pdf
 [react-demo-1]: https://youtu.be/b9G78xADEbY
+[react-demo-2]: https://youtu.be/jsCbwab5s7E
+[checkpoint-review]: https://youtu.be/2dxwdXq_dvc
+[movie-solution]: https://youtu.be/Wivrqg9sMzg
+[react-rsvp-review]: https://youtu.be/AkJQaJIGTPU
+[api-&-fetch]: https://youtu.be/He-N09eukAg
 
 ---
 
@@ -98,9 +103,10 @@ June 22 – June 26
 | Topic                      | Assignment         | Lecture | Slides                      | Demo |
 | -------------------------- | ------------------ | ------- | --------------------------- | ---- |
 | Introduction to Express.js | [📝][express-asst] | -       | [PDF][fullstack-api-slides] | -    |
-| Middleware & Routing       | -                  | -       | [PDF][fullstack-api-slides] | -    |
+| Middleware & Routing       | [📝][middleware-asst] | -    | [PDF][fullstack-api-slides] | -    |
 
 [express-asst]: ./assignments/Express.md
+[middleware-asst]: ./assignments/Middleware.md
 
 ---
 
